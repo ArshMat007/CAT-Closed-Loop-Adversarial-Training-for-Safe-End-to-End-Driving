@@ -68,7 +68,11 @@ The project leverages a robust methodological framework for environment interact
 ## Usage Examples & Visualizations
 
 <img width="424" alt="image" src="https://github.com/user-attachments/assets/034e42e8-563b-4e63-ba06-aa2ab8f85d16" />
+
+Top-down view of the maps
+
 ![image](https://github.com/user-attachments/assets/31d07057-ec4e-4b97-a784-41ffaff19869)
+Overview of the proposed method.
 
 
 ---
