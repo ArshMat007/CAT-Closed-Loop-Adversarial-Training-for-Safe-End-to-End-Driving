@@ -1,79 +1,75 @@
-# CAT-Closed-Loop-Adversarial-Training-for-Safe-End-to-End-Driving
-The focus is on developing an agent capable of driving autonomously in a simulated environment, MetaDrive, which presents various realistic driving scenarios.
-1. Installation and Basic Test:
-The initial cell installs the MetaDrive simulator using pip.
-It then performs a basic test to confirm the installation, creating a simple environment and interacting with it briefly.
-This step ensures that MetaDrive is set up correctly and can be used for further experimentation.
+# CAT: Closed-Loop Adversarial Training for Safe End-to-End Driving
 
-3. Basic Functionality:
-The second cell demonstrates the usage of a pre-trained PPO expert policy within MetaDrive.
-It sets up an environment, resets it, and uses the expert policy to control the agent.
-The code records a top-down view of the simulation as a GIF, illustrating the agent's behavior.
-Finally, it prints the episode reward, indicating the agent's performance.
+## Project Overview
 
-4. SafeMetaDrive:
-The next cell focuses on safety-critical scenarios using the SafeMetaDriveEnv.
-It applies the same expert policy but also tracks costs related to safety violations.
-Again, it records a GIF for visualization and prints episode rewards and costs.
+This project focuses on developing and evaluating an autonomous driving agent within a simulated environment, MetaDrive, designed to handle various realistic and safety-critical driving scenarios. The core objective is to build a robust agent capable of safe, end-to-end autonomous driving through the application of closed-loop adversarial training techniques.
 
-5. Multi-agent Environment Visualization:
-This cell showcases multi-agent driving environments within MetaDrive.
-It iterates through different types of multi-agent scenarios (roundabout, bottleneck, etc.).
-For each scenario, it creates an environment, resets it, and performs random actions.
-The code captures frames from the top-down view and combines them into a GIF, illustrating the multi-agent interactions.
+## Table of Contents
 
-6. Real-world Scenario Environment Visualization:
-This cell utilizes the Waymo Open Dataset to create real-world-like driving scenarios.
-It sets up a DemoEnv with configurations for using Waymo data.
-The code then steps through the environment, captures frames, and generates a GIF.
+- [Introduction](#introduction)
+- [Key Features & Demonstrations](#key-features--demonstrations)
+- [Methodology](#methodology)
+- [Installation](#installation)
+- [Usage Examples & Visualizations](#usage-examples--visualizations)
 
-7. Map Generation:
-This part demonstrates the map generation capabilities of MetaDrive.
-It creates environments with different map configurations (random or fixed block sequences).
-For each configuration, it draws the top-down view of the map using matplotlib.
-This allows users to visualize and understand the generated maps.
+---
 
-8. 3D Renderer:
-The final cell shows how to enable the 3D renderer in MetaDrive.
-It configures the environment to use an offscreen renderer and captures frames.
-The code saves the captured frame as an image, demonstrating the 3D rendering.
-In essence, this Colab file provides:
-Introduction: A basic introduction to MetaDrive, its installation, and core functionality.
-Examples: Demonstrations of different environments, policies, and rendering settings.
-Scenarios: Showcases diverse driving scenarios, including multi-agent and real-world setups.
-Map Generation: Explains the capabilities for building custom environments.
-3D Rendering: Provides instructions for enabling more immersive visualizations.
+## Introduction
 
+This repository provides a comprehensive exploration of MetaDrive, a high-fidelity driving simulator, and its application in developing safe autonomous driving agents. It covers fundamental aspects from environment setup to advanced topics like multi-agent interactions, real-world scenario integration via Waymo Open Dataset, and 3D rendering.
 
-Methodology 
-1. Environment Setup:
-MetaDrive Installation: The Colab starts by installing MetaDrive using pip.
-Environment Configuration: Different environments are used throughout the notebook:
-MetaDriveEnv: For basic functionalities and PPO expert policy demonstration.
-SafeMetaDriveEnv: For safety-critical scenarios.
-Multi-agent environments: MultiAgentRoundaboutEnv, MultiAgentBottleneckEnv, MultiAgentIntersectionEnv, MultiAgentParkingLotEnv, MultiAgentTollgateEnv.
-Real-world scenario environment: DemoEnv leveraging Waymo Open Dataset.
-Environment Parameters: Configurations are used to customize the environments, such as start_seed, num_scenarios, traffic_density, accident_prob, etc.
+## Key Features & Demonstrations
 
-2. Agent Implementation (TD3):
-Replay Buffer: A custom ReplayBuffer class is defined to store experiences for training the agent.
-TD3 Agent: The code uses the TD3 (Twin Delayed Deep Deterministic Policy Gradient) algorithm from the stable-baselines3 library to create and train the reinforcement learning agent.
-Policy: The agent uses an MLP (Multi-Layer Perceptron) policy with a specified network architecture.
-Training Loop: The agent is trained by interacting with the environment, collecting experiences in the replay buffer, and updating its policy using the TD3 algorithm.
+The Colab notebook (which this README is based on) provides:
 
-3. Evaluation and Visualization:
-Evaluation: The trained agent is evaluated over multiple episodes to assess its performance.
-Reward Plotting: The episode rewards during evaluation are plotted to visualize the agent's learning progress.
-Visualization: MetaDrive provides different rendering modes for visualization:
-top_down: A bird's-eye view of the environment.
-image_observation: Offscreen rendering for accessing rendered frames.
-use_render: Enabling 3D rendering.
-GIF Generation: The code generates GIF animations of the simulations using pygame and PIL libraries.
+* **Basic Introduction:** A foundational understanding of MetaDrive, including its installation and core functionalities.
+* **Diverse Examples:** Demonstrations across various MetaDrive environments, policy types (PPO expert), and rendering configurations.
+* **Challenging Scenarios:** Showcases a range of driving scenarios, including multi-agent interactions (e.g., roundabout, bottleneck, intersection) and real-world setups derived from the Waymo Open Dataset.
+* **Map Generation:** Explains and demonstrates MetaDrive's capabilities for procedurally generating custom environments and visualizing different map configurations.
+* **3D Rendering:** Provides instructions and examples for enabling and capturing outputs from MetaDrive's immersive 3D renderer.
 
-4. Map Generation:
-Procedural Generation: MetaDrive's procedural map generation capabilities are demonstrated by generating random maps with different road block sequences.
-Visualization: Generated maps are visualized in top-down view using matplotlib.
-5. Waymo Open Dataset Integration:
-Real-World Scenario: A demo environment (DemoEnv) is created using data from the Waymo Open Dataset to simulate real-world driving scenarios.
-Replay Policy: A ReplayEgoCarPolicy is used to control the ego vehicle based on recorded data.
-Visualization: The simulation is visualized, and a GIF animation is generated.
+## Methodology
+
+The project leverages a robust methodological framework for environment interaction, agent training, and evaluation:
+
+1.  ### Environment Setup
+    * **MetaDrive Installation:** Initial setup is handled via `pip` for easy environment preparation.
+    * **Environment Configuration:** Utilizes various MetaDrive environments:
+        * `MetaDriveEnv`: For basic functionalities and expert policy demonstrations.
+        * `SafeMetaDriveEnv`: Specifically for simulating and tracking costs in safety-critical scenarios.
+        * **Multi-agent Environments:** Includes `MultiAgentRoundaboutEnv`, `MultiAgentBottleneckEnv`, `MultiAgentIntersectionEnv`, `MultiAgentParkingLotEnv`, and `MultiAgentTollgateEnv` for complex interactions.
+        * **Real-World Scenarios:** `DemoEnv` is configured to integrate and leverage data from the Waymo Open Dataset.
+    * **Customizable Parameters:** Environments are highly configurable with parameters like `start_seed`, `num_scenarios`, `traffic_density`, and `accident_prob`.
+
+2.  ### Agent Implementation (TD3)
+    * **Replay Buffer:** A custom `ReplayBuffer` class is implemented to efficiently store and manage experiences for agent training.
+    * **TD3 Agent:** The core reinforcement learning agent is built using the **TD3 (Twin Delayed Deep Deterministic Policy Gradient)** algorithm from the `stable-baselines3` library.
+    * **Policy Architecture:** The agent employs an MLP (Multi-Layer Perceptron) policy with a specified network architecture.
+    * **Training Loop:** The agent undergoes a training loop where it interacts with the environment, collects experiences into the replay buffer, and iteratively updates its policy using the TD3 algorithm.
+
+3.  ### Evaluation and Visualization
+    * **Performance Evaluation:** The trained agent's performance is rigorously assessed over multiple episodes.
+    * **Reward Plotting:** Episode rewards are plotted to visually track the agent's learning progress and performance trends.
+    * **Rendering Modes:** MetaDrive offers diverse rendering modes for visualization:
+        * `top_down`: Provides a bird's-eye view of the simulation.
+        * `image_observation`: Enables offscreen rendering for direct access to rendered frames.
+        * `use_render`: Activates full 3D rendering for immersive views.
+    * **GIF Generation:** High-quality GIF animations of the simulations are generated using `pygame` and `PIL` libraries for dynamic visual demonstrations.
+
+4.  ### Map Generation
+    * **Procedural Generation:** MetaDrive's powerful procedural map generation capabilities are showcased, allowing for the creation of diverse and random maps based on configurable road block sequences.
+    * **Visualization:** Generated maps are visualized in a top-down view using `matplotlib` for clarity and analysis.
+
+5.  ### Waymo Open Dataset Integration
+    * **Real-World Scenario Simulation:** A `DemoEnv` is specifically created to utilize data from the Waymo Open Dataset, enabling the simulation of realistic real-world driving scenarios.
+    * **Replay Policy:** A `ReplayEgoCarPolicy` is used to control the ego vehicle, mimicking recorded real-world driving behaviors.
+    * **Visualization:** The integrated real-world simulations are visualized, and corresponding GIF animations are generated.
+
+---
+
+## Installation
+
+To get started with this project, you'll need to install the MetaDrive simulator.
+
+```bash
+pip install metadrive-simulator
