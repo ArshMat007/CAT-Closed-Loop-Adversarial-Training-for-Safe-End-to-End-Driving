@@ -65,6 +65,12 @@ The project leverages a robust methodological framework for environment interact
     * **Replay Policy:** A `ReplayEgoCarPolicy` is used to control the ego vehicle, mimicking recorded real-world driving behaviors.
     * **Visualization:** The integrated real-world simulations are visualized, and corresponding GIF animations are generated.
 
+## Usage Examples & Visualizations
+
+<img width="424" alt="image" src="https://github.com/user-attachments/assets/034e42e8-563b-4e63-ba06-aa2ab8f85d16" />
+![image](https://github.com/user-attachments/assets/31d07057-ec4e-4b97-a784-41ffaff19869)
+
+
 ---
 
 ## Installation
